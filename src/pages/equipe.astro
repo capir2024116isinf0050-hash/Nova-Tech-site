@@ -1,61 +1,97 @@
 
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nossa Equipe | Nova Tech</title>
-  </head>
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+import Cartao from '../components/Cartao.astro';
+import { empresa } from '../data/empresa.js';
+---
 
-  <body>
-    <header>
-      <strong>Nova Tech</strong>
-
-      <nav>
-        <ul>
-          <li><a href="/">Início</a></li>
-          <li><a href="/sobre">Sobre</a></li>
-          <li><a href="/equipe">Equipe</a></li>
-          <li><a href="/contato">Contato</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <section>
-        <h1>Conheça Nossa Equipe</h1>
-
+<LayoutBase
+  titulo="Nossa Equipe"
+  descricao="Conheça as pessoas que fazem a Nova Tech acontecer."
+>
+  <section class="secao">
+    <div class="container">
+      <header class="cabecalho-secao">
+        <h1>Nossa Equipe Técnica</h1>
         <p>
-          Por trás da Nova Tech existe uma equipe
-          comprometida com a inovação, tecnologia
-          e desenvolvimento de soluções.
+          Conheça as profissionais responsáveis por transformar ideias
+          em soluções tecnológicas.
         </p>
+      </header>
 
-        <ul>
-          <li>
-            <h2>Mayra Leticia</h2>
-            <strong>CEO e Fundadora</strong>
-            <p>
-              Responsável pela liderança, gestão
-              estratégica e crescimento da Nova Tech.
-            </p>
-          </li>
+      <div class="grid-equipe">
+        {empresa.equipe.map((membro) => (
+          <Cartao>
+            <div class="card-membro-conteudo">
+              <img
+                src={membro.foto}
+                alt={membro.alt}
+                class="foto-perfil"
+                width="140"
+                height="140"
+              />
 
-          <li>
-            <h2>Geovanna Araujo</h2>
-            <strong>Desenvolvedora de Software</strong>
-            <p>
-              Responsável pelo desenvolvimento,
-              criação e manutenção das soluções
-              tecnológicas da Nova Tech.
-            </p>
-          </li>
-        </ul>
-      </section>
-    </main>
+              <div class="info-membro">
+                <h3>{membro.nome}</h3>
+                <span class="cargo">{membro.cargo}</span>
+                <p class="descricao-membro">{membro.descricao}</p>
+              </div>
+            </div>
+          </Cartao>
+        ))}
+      </div>
+    </div>
+  </section>
+</LayoutBase>
 
-    <footer>
-      <p>&copy; 2026 Nova Tech. Todos os direitos reservados.</p>
-    </footer>
-  </body>
-</html>
+<style>
+  .cabecalho-secao {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cabecalho-secao h1 {
+    margin-bottom: 1rem;
+  }
+
+  .grid-equipe {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .card-membro-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .foto-perfil {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-membro h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .cargo {
+    display: inline-block;
+    color: var(--cor-secundaria);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .descricao-membro {
+    font-size: 0.95rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 0;
+  }
+</style>

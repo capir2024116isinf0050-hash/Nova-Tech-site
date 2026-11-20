@@ -1,66 +1,112 @@
 
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fale Conosco | Nova Tech</title>
-  </head>
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+import Cartao from '../components/Cartao.astro';
+import { empresa } from '../data/empresa.js';
+---
 
-  <body>
-    <header>
-      <strong>Nova Tech</strong>
-
-      <nav>
-        <ul>
-          <li><a href="/">Início</a></li>
-          <li><a href="/sobre">Sobre</a></li>
-          <li><a href="/equipe">Equipe</a></li>
-          <li><a href="/contato">Contato</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <section>
-        <h1>Fale Conosco</h1>
-
+<LayoutBase
+  titulo="Contato"
+  descricao="Entre em contato com a Nova Tech."
+>
+  <section class="secao">
+    <div class="container">
+      <header class="cabecalho-secao">
+        <h1>Entre em Contato</h1>
         <p>
-          Quer conhecer melhor a Nova Tech ou saber mais
-          sobre nossas soluções tecnológicas?
-          Entre em contato conosco!
+          Estamos prontos para ouvir suas ideias e ajudar a transformá-las
+          em soluções tecnológicas.
         </p>
-      </section>
+      </header>
 
-      <section>
-        <h2>Nossa Empresa</h2>
+      <div class="grid-contato">
+        <Cartao>
+          <h2>Informações de Contato</h2>
 
-        <p>
-          Nova Tech
-        </p>
-        <p>
-          Atendimento online.
-        </p>
-      </section>
+          <div class="item-contato">
+            <h3>E-mail</h3>
+            <p>
+              <a href={`mailto:${empresa.contato.email}`}>
+                {empresa.contato.email}
+              </a>
+            </p>
+          </div>
 
-      <section>
-        <h2>Canais Digitais</h2>
+          <div class="item-contato">
+            <h3>Telefone</h3>
+            <p>{empresa.contato.telefone}</p>
+          </div>
 
-        <p>
-          <strong>E-mail:</strong>
-          <a href="mailto:contato@novatech.com.br">
-            contato@novatech.com.br
+          <div class="item-contato">
+            <h3>Endereço</h3>
+            <p>
+              {empresa.contato.endereco.logradouro},
+              {empresa.contato.endereco.complemento}
+              <br />
+              {empresa.contato.endereco.bairro} -
+              {empresa.contato.endereco.cidadeEstado}
+              <br />
+              CEP: {empresa.contato.endereco.cep}
+            </p>
+          </div>
+        </Cartao>
+
+        <Cartao>
+          <h2>Vamos conversar?</h2>
+          <p>
+            Entre em contato pelo nosso e-mail. Será um prazer conhecer
+            seu projeto!
+          </p>
+
+          <a
+            class="botao-contato"
+            href={`mailto:${empresa.contato.email}`}
+          >
+            Enviar e-mail
           </a>
-        </p>
+        </Cartao>
+      </div>
+    </div>
+  </section>
+</LayoutBase>
 
-        <p>
-          <strong>Empresa:</strong> Nova Tech
-        </p>
-      </section>
-    </main>
+<style>
+  .cabecalho-secao {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-    <footer>
-      <p>&copy; 2026 Nova Tech. Todos os direitos reservados.</p>
-    </footer>
-  </body>
-</html>
+  .grid-contato {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .item-contato {
+    margin-top: 1.5rem;
+  }
+
+  .item-contato h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .item-contato a {
+    color: var(--cor-secundaria);
+    text-decoration: none;
+  }
+
+  .botao-contato {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--cor-secundaria);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--borda-raio);
+    font-weight: 700;
+  }
+
+  .botao-contato:hover {
+    background-color: var(--cor-destaque);
+  }
+</style>

@@ -1,53 +1,61 @@
 
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nova Tech | O futuro começa aqui.</title>
-  </head>
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+import Cartao from '../components/Cartao.astro';
+import { empresa } from '../data/empresa.js';
+---
 
-  <body>
-    <header>
-      <strong>Nova Tech</strong>
+<LayoutBase
+  titulo="Início"
+  descricao={`Bem-vindo à ${empresa.nome}. ${empresa.slogan}`}
+>
+  <section class="hero">
+    <div class="container">
+      <h1>{empresa.slogan}</h1>
+      <p class="hero-descricao">{empresa.missao}</p>
+      <a href="/contato" class="btn">Fale Conosco</a>
+    </div>
+  </section>
 
-      <nav>
-        <ul>
-          <li><a href="/">Início</a></li>
-          <li><a href="/sobre">Sobre</a></li>
-          <li><a href="/equipe">Equipe</a></li>
-          <li><a href="/contato">Contato</a></li>
-        </ul>
-      </nav>
-    </header>
+  <section class="publico secao secao-alt">
+    <div class="container">
+      <h2>Quem Atendemos</h2>
+      <Cartao>
+        <p class="texto-publico">{empresa.publicoAlvo}</p>
+      </Cartao>
+    </div>
+  </section>
+</LayoutBase>
 
-    <main>
-      <section>
-        <h1>O futuro começa aqui.</h1>
+<style>
+  .hero {
+    background: var(--degrade-hero);
+    color: var(--cor-texto-invertido);
+    padding: 6rem 0;
+  }
 
-        <p>
-          A Nova Tech acredita que a tecnologia é capaz de
-          transformar ideias em grandes oportunidades.
-          Trabalhamos com inovação, qualidade e soluções
-          tecnológicas para conectar você ao futuro.
-        </p>
+  .hero h1 {
+    color: var(--cor-texto-invertido);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    max-width: 800px;
+  }
 
-        <a href="/contato">Fale Conosco</a>
-      </section>
+  .hero-descricao {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin-bottom: 2rem;
+    color: var(--cor-texto-invertido-suave);
+  }
 
-      <section>
-        <h2>Por que escolher a Nova Tech?</h2>
+  .publico h2 {
+    margin-bottom: 2rem;
+  }
 
-        <p>
-          Nosso compromisso é oferecer tecnologia,
-          inovação e confiança, buscando sempre as
-          melhores soluções para nossos clientes.
-        </p>
-      </section>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 Nova Tech. Todos os direitos reservados.</p>
-    </footer>
-  </body>
-</html>
+  .texto-publico {
+    margin-bottom: 0;
+    font-size: 1.125rem;
+    color: var(--cor-texto-secundario);
+  }
+</style>
